@@ -1,9 +1,11 @@
 import { Stack } from "expo-router";
+import "../global.css";
 import { StatusBar } from "expo-status-bar";
+import React from "react";
 
 // 👇 THIS LINE IS MANDATORY. DO YOU HAVE IT?
-import "../global.css";
-import React from "react";
+// import "../global.css";
+
 
 export default function RootLayout() {
   return (
