@@ -1,5 +1,4 @@
 import React from 'react';
-// ✅ CORRECT (New way)
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
@@ -43,13 +42,26 @@ export default function Dashboard() {
           </View>
         </View>
 
-        {/* Quick Actions (Adapting your top buttons) */}
+        {/* Quick Actions Grid */}
         <Text className="text-white text-lg font-bold mb-4">Quick Actions</Text>
         <View className="flex-row flex-wrap justify-between gap-y-4">
-          <ActionButton icon="calendar" label="Attendance" />
+          
+          {/* ✅ LINKED: Attendance Button */}
+          <ActionButton 
+            icon="calendar" 
+            label="Attendance" 
+            onPress={() => router.push('/attendance')} 
+          />
+
           <ActionButton icon="coffee" label="Apply Leave" />
           <ActionButton icon="file-text" label="Reports" />
-          <ActionButton icon="log-out" label="Logout" onPress={() => router.replace('/(auth)/login')} />
+          
+          {/* Logout Button */}
+          <ActionButton 
+            icon="log-out" 
+            label="Logout" 
+            onPress={() => router.replace('/(auth)/login')} 
+          />
         </View>
 
         {/* Recent Tasks Header */}
@@ -60,7 +72,7 @@ export default function Dashboard() {
           </TouchableOpacity>
         </View>
 
-        {/* Empty State (From your screenshot) */}
+        {/* Empty State */}
         <View className="items-center py-10 opacity-50">
            <Feather name="inbox" size={40} color="#6B7280" />
            <Text className="text-gray-500 mt-2">No tasks found</Text>
@@ -74,7 +86,7 @@ export default function Dashboard() {
 // --- Local Helper Components ---
 
 const StatRow = ({ label, count, color }: { label: string, count: number, color: string }) => (
-  <View className="flex-row items-center justify-between">
+  <View className="flex-row items-center justify-between mb-2">
     <View className="flex-row items-center">
       <View className={`w-2 h-2 rounded-full ${color} mr-2`} />
       <Text className="text-gray-400 text-xs">{label}</Text>
@@ -86,9 +98,9 @@ const StatRow = ({ label, count, color }: { label: string, count: number, color:
 const ActionButton = ({ icon, label, onPress }: { icon: keyof typeof Feather.glyphMap, label: string, onPress?: () => void }) => (
   <TouchableOpacity 
     onPress={onPress}
-    className="w-[48%] bg-surface p-4 rounded-xl border border-gray-800 flex-row items-center justify-center space-x-3 active:bg-gray-800"
+    className="w-[48%] bg-surface p-4 rounded-xl border border-gray-800 flex-row items-center justify-center mb-2 active:bg-gray-800"
   >
-    <Feather name={icon} size={18} color="#FFD700" />
+    <Feather name={icon} size={18} color="#FFD700" style={{ marginRight: 8 }} />
     <Text className="text-white font-medium text-sm">{label}</Text>
   </TouchableOpacity>
 );
